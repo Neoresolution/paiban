@@ -55,24 +55,32 @@ def copy_to_clipboard(text: str):
 def show_toast(title: str, message: str):
     """Windows toast 通知（不阻塞）"""
     try:
-        # 使用 PowerShell 调用 Windows Toast
-        ps = (
+        # 通过临时脚本文件避免注入风险
+        import tempfile
+        ps_script = (
             f'[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, '
-            f'ContentType = WindowsRuntime] > $null; '
-            f'$template = [Windows.UI.Notifications.ToastNotificationManager]::'
-            f'GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02); '
-            f'$template.GetElementsByTagName("text")[0].AppendChild('
-            f'$template.CreateTextNode("{title}")) > $null; '
-            f'$template.GetElementsByTagName("text")[1].AppendChild('
-            f'$template.CreateTextNode("{message}")) > $null; '
-            f'$toast = [Windows.UI.Notifications.ToastNotification]::new($template); '
+            f'ContentType = WindowsRuntime] > $null\n'
+            f'$t = [Windows.UI.Notifications.ToastNotificationManager]::'
+            f'GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02)\n'
+            f'$t.GetElementsByTagName("text")[0].AppendChild('
+            f'$t.CreateTextNode("{title}")) > $null\n'
+            f'$t.GetElementsByTagName("text")[1].AppendChild('
+            f'$t.CreateTextNode("{message}")) > $null\n'
+            f'$toast = [Windows.UI.Notifications.ToastNotification]::new($t)\n'
             f'[Windows.UI.Notifications.ToastNotificationManager]::'
             f'CreateToastNotifier("先锋组").Show($toast)'
         )
+        # 写入 UTF-16 LE 脚本文件（PowerShell 默认编码）
+        with tempfile.NamedTemporaryFile(
+            mode='w', suffix='.ps1', delete=False, encoding='utf-16'
+        ) as f:
+            f.write(ps_script)
+            tmp = f.name
         subprocess.run(
-            ['powershell', '-NoProfile', '-Command', ps],
+            ['powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', tmp],
             capture_output=True, timeout=10
         )
+        os.unlink(tmp)
     except Exception:
         pass
 

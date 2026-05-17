@@ -90,11 +90,19 @@ def generate_year_schedule(year: int) -> list[Duty]:
     return result
 
 
-def format_reminder(duty: Duty) -> str:
-    """生成微信群提醒文本"""
+def format_reminder(duty: Duty, today: date = None) -> str:
+    """生成微信群提醒文本。自动判断「本周四」还是「下周四」。"""
+    if today is None:
+        today = date.today()
+    # 判断是否在同一日历周内
+    wd = today.weekday()
+    week_start = today - timedelta(days=wd)
+    week_end = week_start + timedelta(days=6)
+    in_this_week = week_start <= duty.thu_date <= week_end
+    day_label = '本周四' if in_this_week else '下周四'
     return (
         f'{chr(0x3010)}先锋组例会提醒{chr(0x3011)}\n'
-        f'本周四 {duty.thu_date.month}月{duty.thu_date.day}日\n'
+        f'{day_label} {duty.thu_date.month}月{duty.thu_date.day}日\n'
         f'主持：{duty.host}\n'
         f'资讯发布：{duty.radar_presenter}'
     )
