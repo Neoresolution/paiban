@@ -231,35 +231,75 @@ tbody tr.this-week:hover {{ background: #fff3cd; }}
 
 <script>
 const DATA = {data_json};
-const NEXT_DATE = "{NEXT_THU_DATE}";
+
+function getNextThursday() {{
+    var now = new Date();
+    var day = now.getDay(); // 0=Sun, 1=Mon,...,6=Sat
+    var daysUntil = (4 - day + 7) % 7; // days to next Thu
+    var thu = new Date(now);
+    thu.setDate(thu.getDate() + daysUntil);
+    var mm = thu.getMonth() + 1;
+    var dd = thu.getDate();
+    return {{
+        iso: thu.getFullYear() + '-' + String(mm).padStart(2,'0') + '-' + String(dd).padStart(2,'0'),
+        label: mm + '月' + dd + '日（周四）'
+    }};
+}}
+
+function isInThisWeek(dateStr) {{
+    var now = new Date();
+    var d = new Date(dateStr + 'T00:00:00');
+    var startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - (now.getDay() || 7) + 1);
+    startOfWeek.setHours(0,0,0,0);
+    var endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
+    endOfWeek.setHours(23,59,59,999);
+    return d >= startOfWeek && d <= endOfWeek;
+}}
 
 function render() {{
-    const tbody = document.getElementById('scheduleBody');
-    let currentMonth = 0;
-    let html = '';
+    var next = getNextThursday();
+    var nextDuty = null;
+    for (var i = 0; i < DATA.length; i++) {{
+        if (DATA[i].date === next.iso) {{ nextDuty = DATA[i]; break; }}
+    }}
+    if (!nextDuty) nextDuty = DATA[0];
 
-    DATA.forEach(d => {{
-        const isNext = d.date === NEXT_DATE;
+    // Update card
+    document.getElementById('cardHeader').textContent = isInThisWeek(next.iso) ? '本周例会' : '下次例会';
+    document.getElementById('thisWeekHost').textContent = nextDuty.host;
+    document.getElementById('thisWeekRadar').textContent = nextDuty.radar;
+    document.getElementById('thisWeekDate').textContent = next.label;
+
+    // Render table
+    var tbody = document.getElementById('scheduleBody');
+    var currentMonth = 0;
+    var html = '';
+    for (var i = 0; i < DATA.length; i++) {{
+        var d = DATA[i];
         if (d.month !== currentMonth) {{
             currentMonth = d.month;
             html += '<tr class="month-sep"><td colspan="3">' + d.month + '月</td></tr>';
         }}
-        html += '<tr class="' + (isNext ? 'this-week' : '') + '" id="row-' + d.date + '">' +
-            '<td>' + d.month + '/' + String(d.day).padStart(2, '0') + '</td>' +
+        var cls = (d.date === next.iso) ? 'this-week' : '';
+        html += '<tr class="' + cls + '" id="row-' + d.date + '">' +
+            '<td>' + d.month + '/' + String(d.day).padStart(2,'0') + '</td>' +
             '<td>' + d.host + '</td>' +
             '<td>' + d.radar + '</td></tr>';
-    }});
-
+    }}
     tbody.innerHTML = html;
 
+    // Scroll to highlighted row
     setTimeout(function() {{
-        const row = document.getElementById('row-' + NEXT_DATE);
+        var row = document.getElementById('row-' + next.iso);
         if (row) row.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
     }}, 400);
 }}
 
 function scrollToToday() {{
-    const row = document.getElementById('row-' + NEXT_DATE);
+    var next = getNextThursday();
+    var row = document.getElementById('row-' + next.iso);
     if (row) row.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
 }}
 
