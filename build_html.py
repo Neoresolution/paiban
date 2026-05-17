@@ -197,19 +197,19 @@ tbody tr.this-week:hover {{ background: #fff3cd; }}
 </div>
 
 <div class="this-week-card">
-    <div class="card-header">{card_header}</div>
+    <div class="card-header" id="cardHeader">{card_header}</div>
     <div class="card-body">
         <div class="role">
             <div class="role-label">主持</div>
-            <div class="role-name">{NEXT_HOST}</div>
+            <div class="role-name" id="thisWeekHost">{NEXT_HOST}</div>
         </div>
         <div class="card-divider"></div>
         <div class="role">
             <div class="role-label">资讯发布</div>
-            <div class="role-name">{NEXT_RADAR}</div>
+            <div class="role-name" id="thisWeekRadar">{NEXT_RADAR}</div>
         </div>
     </div>
-    <div class="role-date">{NEXT_LABEL}</div>
+    <div class="role-date" id="thisWeekDate">{NEXT_LABEL}</div>
 </div>
 
 <div class="table-container">
