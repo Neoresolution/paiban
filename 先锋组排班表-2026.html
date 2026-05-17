@@ -192,18 +192,23 @@ tbody tr.this-week:hover { background: #fff3cd; }
 <button class="jump-btn" onclick="scrollToToday()" title="回到下次例会">&#x1F4C5;</button>
 
 <script>
-const DATA = [{"date": "2026-01-01", "month": 1, "day": 1, "host": "安健", "radar": "安健"}, {"date": "2026-01-08", "month": 1, "day": 8, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-01-15", "month": 1, "day": 15, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-01-22", "month": 1, "day": 22, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-01-29", "month": 1, "day": 29, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-02-05", "month": 2, "day": 5, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-02-12", "month": 2, "day": 12, "host": "张忠钢", "radar": "安健"}, {"date": "2026-02-19", "month": 2, "day": 19, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-02-26", "month": 2, "day": 26, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-03-05", "month": 3, "day": 5, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-03-12", "month": 3, "day": 12, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-03-19", "month": 3, "day": 19, "host": "安健", "radar": "唐永生"}, {"date": "2026-03-26", "month": 3, "day": 26, "host": "安健", "radar": "安健"}, {"date": "2026-04-02", "month": 4, "day": 2, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-04-09", "month": 4, "day": 9, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-04-16", "month": 4, "day": 16, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-04-23", "month": 4, "day": 23, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-04-30", "month": 4, "day": 30, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-05-07", "month": 5, "day": 7, "host": "张忠钢", "radar": "安健"}, {"date": "2026-05-14", "month": 5, "day": 14, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-05-21", "month": 5, "day": 21, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-05-28", "month": 5, "day": 28, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-06-04", "month": 6, "day": 4, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-06-11", "month": 6, "day": 11, "host": "安健", "radar": "唐永生"}, {"date": "2026-06-18", "month": 6, "day": 18, "host": "安健", "radar": "安健"}, {"date": "2026-06-25", "month": 6, "day": 25, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-07-02", "month": 7, "day": 2, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-07-09", "month": 7, "day": 9, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-07-16", "month": 7, "day": 16, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-07-23", "month": 7, "day": 23, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-07-30", "month": 7, "day": 30, "host": "张忠钢", "radar": "安健"}, {"date": "2026-08-06", "month": 8, "day": 6, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-08-13", "month": 8, "day": 13, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-08-20", "month": 8, "day": 20, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-08-27", "month": 8, "day": 27, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-09-03", "month": 9, "day": 3, "host": "安健", "radar": "唐永生"}, {"date": "2026-09-10", "month": 9, "day": 10, "host": "安健", "radar": "安健"}, {"date": "2026-09-17", "month": 9, "day": 17, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-09-24", "month": 9, "day": 24, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-10-01", "month": 10, "day": 1, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-10-08", "month": 10, "day": 8, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-10-15", "month": 10, "day": 15, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-10-22", "month": 10, "day": 22, "host": "张忠钢", "radar": "安健"}, {"date": "2026-10-29", "month": 10, "day": 29, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-11-05", "month": 11, "day": 5, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-11-12", "month": 11, "day": 12, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-11-19", "month": 11, "day": 19, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-11-26", "month": 11, "day": 26, "host": "安健", "radar": "唐永生"}, {"date": "2026-12-03", "month": 12, "day": 3, "host": "安健", "radar": "安健"}, {"date": "2026-12-10", "month": 12, "day": 10, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-12-17", "month": 12, "day": 17, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-12-24", "month": 12, "day": 24, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-12-31", "month": 12, "day": 31, "host": "秦韬", "radar": "张忠钢"}];
+var DATA = [{"date": "2026-01-01", "month": 1, "day": 1, "host": "安健", "radar": "安健"}, {"date": "2026-01-08", "month": 1, "day": 8, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-01-15", "month": 1, "day": 15, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-01-22", "month": 1, "day": 22, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-01-29", "month": 1, "day": 29, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-02-05", "month": 2, "day": 5, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-02-12", "month": 2, "day": 12, "host": "张忠钢", "radar": "安健"}, {"date": "2026-02-19", "month": 2, "day": 19, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-02-26", "month": 2, "day": 26, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-03-05", "month": 3, "day": 5, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-03-12", "month": 3, "day": 12, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-03-19", "month": 3, "day": 19, "host": "安健", "radar": "唐永生"}, {"date": "2026-03-26", "month": 3, "day": 26, "host": "安健", "radar": "安健"}, {"date": "2026-04-02", "month": 4, "day": 2, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-04-09", "month": 4, "day": 9, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-04-16", "month": 4, "day": 16, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-04-23", "month": 4, "day": 23, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-04-30", "month": 4, "day": 30, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-05-07", "month": 5, "day": 7, "host": "张忠钢", "radar": "安健"}, {"date": "2026-05-14", "month": 5, "day": 14, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-05-21", "month": 5, "day": 21, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-05-28", "month": 5, "day": 28, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-06-04", "month": 6, "day": 4, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-06-11", "month": 6, "day": 11, "host": "安健", "radar": "唐永生"}, {"date": "2026-06-18", "month": 6, "day": 18, "host": "安健", "radar": "安健"}, {"date": "2026-06-25", "month": 6, "day": 25, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-07-02", "month": 7, "day": 2, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-07-09", "month": 7, "day": 9, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-07-16", "month": 7, "day": 16, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-07-23", "month": 7, "day": 23, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-07-30", "month": 7, "day": 30, "host": "张忠钢", "radar": "安健"}, {"date": "2026-08-06", "month": 8, "day": 6, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-08-13", "month": 8, "day": 13, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-08-20", "month": 8, "day": 20, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-08-27", "month": 8, "day": 27, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-09-03", "month": 9, "day": 3, "host": "安健", "radar": "唐永生"}, {"date": "2026-09-10", "month": 9, "day": 10, "host": "安健", "radar": "安健"}, {"date": "2026-09-17", "month": 9, "day": 17, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-09-24", "month": 9, "day": 24, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-10-01", "month": 10, "day": 1, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-10-08", "month": 10, "day": 8, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-10-15", "month": 10, "day": 15, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-10-22", "month": 10, "day": 22, "host": "张忠钢", "radar": "安健"}, {"date": "2026-10-29", "month": 10, "day": 29, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-11-05", "month": 11, "day": 5, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-11-12", "month": 11, "day": 12, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-11-19", "month": 11, "day": 19, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-11-26", "month": 11, "day": 26, "host": "安健", "radar": "唐永生"}, {"date": "2026-12-03", "month": 12, "day": 3, "host": "安健", "radar": "安健"}, {"date": "2026-12-10", "month": 12, "day": 10, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-12-17", "month": 12, "day": 17, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-12-24", "month": 12, "day": 24, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-12-31", "month": 12, "day": 31, "host": "秦韬", "radar": "张忠钢"}];
+
+// 兼容所有浏览器的补零函数（padStart 在旧微信浏览器不支持）
+function pad2(n) {
+    return n < 10 ? '0' + n : '' + n;
+}
 
 function getNextThursday() {
     var now = new Date();
-    var day = now.getDay(); // 0=Sun, 1=Mon,...,6=Sat
-    var daysUntil = (4 - day + 7) % 7; // days to next Thu
+    var day = now.getDay();
+    var daysUntil = (4 - day + 7) % 7;
     var thu = new Date(now);
     thu.setDate(thu.getDate() + daysUntil);
     var mm = thu.getMonth() + 1;
     var dd = thu.getDate();
     return {
-        iso: thu.getFullYear() + '-' + String(mm).padStart(2,'0') + '-' + String(dd).padStart(2,'0'),
+        iso: thu.getFullYear() + '-' + pad2(mm) + '-' + pad2(dd),
         label: mm + '月' + dd + '日（周四）'
     };
 }
@@ -228,13 +233,11 @@ function render() {
     }
     if (!nextDuty) nextDuty = DATA[0];
 
-    // Update card
     document.getElementById('cardHeader').textContent = isInThisWeek(next.iso) ? '本周例会' : '下次例会';
     document.getElementById('thisWeekHost').textContent = nextDuty.host;
     document.getElementById('thisWeekRadar').textContent = nextDuty.radar;
     document.getElementById('thisWeekDate').textContent = next.label;
 
-    // Render table
     var tbody = document.getElementById('scheduleBody');
     var currentMonth = 0;
     var html = '';
@@ -246,13 +249,12 @@ function render() {
         }
         var cls = (d.date === next.iso) ? 'this-week' : '';
         html += '<tr class="' + cls + '" id="row-' + d.date + '">' +
-            '<td>' + d.month + '/' + String(d.day).padStart(2,'0') + '</td>' +
+            '<td>' + d.month + '/' + pad2(d.day) + '</td>' +
             '<td>' + d.host + '</td>' +
             '<td>' + d.radar + '</td></tr>';
     }
     tbody.innerHTML = html;
 
-    // Scroll to highlighted row
     setTimeout(function() {
         var row = document.getElementById('row-' + next.iso);
         if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });

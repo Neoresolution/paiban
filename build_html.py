@@ -231,18 +231,23 @@ tbody tr.this-week:hover {{ background: #fff3cd; }}
 <button class="jump-btn" onclick="scrollToToday()" title="回到下次例会">&#x1F4C5;</button>
 
 <script>
-const DATA = {data_json};
+var DATA = {data_json};
+
+// 兼容所有浏览器的补零函数（padStart 在旧微信浏览器不支持）
+function pad2(n) {{
+    return n < 10 ? '0' + n : '' + n;
+}}
 
 function getNextThursday() {{
     var now = new Date();
-    var day = now.getDay(); // 0=Sun, 1=Mon,...,6=Sat
-    var daysUntil = (4 - day + 7) % 7; // days to next Thu
+    var day = now.getDay();
+    var daysUntil = (4 - day + 7) % 7;
     var thu = new Date(now);
     thu.setDate(thu.getDate() + daysUntil);
     var mm = thu.getMonth() + 1;
     var dd = thu.getDate();
     return {{
-        iso: thu.getFullYear() + '-' + String(mm).padStart(2,'0') + '-' + String(dd).padStart(2,'0'),
+        iso: thu.getFullYear() + '-' + pad2(mm) + '-' + pad2(dd),
         label: mm + '月' + dd + '日（周四）'
     }};
 }}
@@ -267,13 +272,11 @@ function render() {{
     }}
     if (!nextDuty) nextDuty = DATA[0];
 
-    // Update card
     document.getElementById('cardHeader').textContent = isInThisWeek(next.iso) ? '本周例会' : '下次例会';
     document.getElementById('thisWeekHost').textContent = nextDuty.host;
     document.getElementById('thisWeekRadar').textContent = nextDuty.radar;
     document.getElementById('thisWeekDate').textContent = next.label;
 
-    // Render table
     var tbody = document.getElementById('scheduleBody');
     var currentMonth = 0;
     var html = '';
@@ -285,13 +288,12 @@ function render() {{
         }}
         var cls = (d.date === next.iso) ? 'this-week' : '';
         html += '<tr class="' + cls + '" id="row-' + d.date + '">' +
-            '<td>' + d.month + '/' + String(d.day).padStart(2,'0') + '</td>' +
+            '<td>' + d.month + '/' + pad2(d.day) + '</td>' +
             '<td>' + d.host + '</td>' +
             '<td>' + d.radar + '</td></tr>';
     }}
     tbody.innerHTML = html;
 
-    // Scroll to highlighted row
     setTimeout(function() {{
         var row = document.getElementById('row-' + next.iso);
         if (row) row.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
