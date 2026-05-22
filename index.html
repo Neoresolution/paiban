@@ -207,11 +207,10 @@ tbody tr.this-week:hover { background: #ffe69c; }
 
 <div class="table-container">
     <h2>全年排班表</h2>
-    <table>
+    <table id="scheduleTable">
         <thead>
             <tr><th>日期</th><th>主持</th><th>资讯发布</th></tr>
         </thead>
-        <tbody id="scheduleBody"></tbody>
     </table>
 </div>
 
@@ -279,8 +278,8 @@ function render() {
     document.getElementById('thisWeekRadar').textContent = nextDuty.radar;
     document.getElementById('thisWeekDate').textContent = next.label;
 
-    // Build table grouped by month
-    var tbody = document.getElementById('scheduleBody');
+    // Build table grouped by month (multiple tbody siblings, no nesting)
+    var table = document.getElementById('scheduleTable');
     var currentMonth = 0;
     var html = '';
     var monthGroupOpen = false;
@@ -288,14 +287,9 @@ function render() {
     for (var i = 0; i < DATA.length; i++) {
         var d = DATA[i];
         if (d.month !== currentMonth) {
-            // Close previous group
-            if (monthGroupOpen) {
-                html += '</tbody>';
-                monthGroupOpen = false;
-            }
+            if (monthGroupOpen) { html += '</tbody>'; monthGroupOpen = false; }
             currentMonth = d.month;
             var isPast = d.month < thisMonth ? ' past' : '';
-            // Current month is expanded by default
             html += '<tbody class="month-group' + isPast + '" id="month-' + d.month + '">';
             html += '<tr class="month-sep" onclick="toggleMonth(' + d.month + ')">'
                 + '<td colspan="3"><span class="arrow">&#9660;</span>' + d.month + '月</td></tr>';
@@ -309,7 +303,10 @@ function render() {
     }
     if (monthGroupOpen) html += '</tbody>';
 
-    tbody.innerHTML = html;
+    // Remove old tbody elements, keep thead
+    var oldBodies = table.querySelectorAll('tbody');
+    for (var j = 0; j < oldBodies.length; j++) oldBodies[j].remove();
+    table.insertAdjacentHTML('beforeend', html);
 
     setTimeout(function() {
         var row = document.getElementById('row-' + next.iso);
