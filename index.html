@@ -8,45 +8,47 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
-    background: #f5f5f5;
+    background: #f0f2f5;
     color: #333;
     line-height: 1.6;
-    padding-bottom: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-bottom: 60px;
 }
 .header {
     background: linear-gradient(135deg, #1a3a5c 0%, #2d6a9f 100%);
     color: white;
-    padding: 24px 16px;
+    padding: 28px 20px;
     text-align: center;
 }
 .header h1 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 .header .sub {
     font-size: 13px;
-    opacity: 0.8;
-    margin-top: 4px;
+    opacity: 0.75;
+    margin-top: 6px;
 }
-
 .this-week-card {
-    margin: 16px;
+    margin: 14px 12px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-radius: 14px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
     overflow: hidden;
 }
 .this-week-card .card-header {
     background: #c41230;
     color: white;
-    padding: 10px 16px;
+    padding: 12px 16px;
     font-size: 14px;
     font-weight: 600;
     text-align: center;
+    letter-spacing: 1px;
 }
 .this-week-card .card-body {
-    padding: 20px 16px;
+    padding: 24px 16px 8px;
     display: flex;
     justify-content: space-around;
     text-align: center;
@@ -54,107 +56,125 @@ body {
 .this-week-card .role { flex: 1; }
 .this-week-card .role-label {
     font-size: 12px;
-    color: #888;
-    margin-bottom: 8px;
+    color: #999;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
 }
 .this-week-card .role-name {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     color: #1a3a5c;
 }
 .this-week-card .role-date {
     font-size: 12px;
     color: #999;
-    margin-top: 4px;
+    margin-top: 10px;
     text-align: center;
-    padding-bottom: 14px;
+    padding-bottom: 16px;
 }
 .card-divider { width: 1px; background: #eee; }
 
 .table-container {
-    margin: 16px;
+    margin: 14px 12px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-radius: 14px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
     overflow: hidden;
+    padding-bottom: 4px;
 }
 .table-container h2 {
-    font-size: 16px;
-    padding: 14px 16px 8px;
+    font-size: 15px;
+    padding: 16px 16px 10px;
     color: #1a3a5c;
     text-align: center;
+    font-weight: 600;
 }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 thead th {
-    background: #f0f4f8;
-    color: #555;
+    background: #f5f6f8;
+    color: #666;
     font-weight: 600;
-    padding: 10px 8px;
-    font-size: 13px;
+    padding: 10px 10px;
+    font-size: 12px;
     position: sticky;
     top: 0;
+    letter-spacing: 1px;
 }
 tbody td {
-    padding: 10px 8px;
+    padding: 10px 10px;
     text-align: center;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f5f5f5;
+}
+tbody tr:nth-child(even):not(.month-sep):not(.this-week) {
+    background: #fafbfc;
 }
 tbody tr.this-week {
-    background: #fff8e1;
+    background: #fff3cd;
     font-weight: 700;
+    box-shadow: inset 4px 0 0 #c41230;
 }
 tbody tr.this-week td:first-child::before {
-    content: "\25B6 ";
+    content: "▶";
     color: #c41230;
-    font-size: 10px;
+    font-size: 9px;
+    margin-right: 4px;
 }
-tbody tr:hover { background: #f5f8fc; }
-tbody tr.this-week:hover { background: #fff3cd; }
+tbody tr:hover { background: #eef2f7; }
+tbody tr.this-week:hover { background: #ffe69c; }
 .month-sep {
-    background: #e8edf2 !important;
-    font-weight: 600;
+    background: #e8ecf1 !important;
+    font-weight: 700;
     color: #1a3a5c;
-    font-size: 13px;
+    font-size: 12px;
+    text-align: center !important;
+    letter-spacing: 2px;
 }
-.month-sep td { padding: 6px 8px; }
+.month-sep td { padding: 7px 8px; }
 
 .footer {
-    margin: 16px;
-    padding: 12px 16px;
+    margin: 14px 12px;
+    padding: 14px 16px;
     background: white;
-    border-radius: 12px;
+    border-radius: 14px;
     font-size: 12px;
-    color: #999;
+    color: #aaa;
     text-align: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    line-height: 1.8;
 }
 
 .jump-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 48px;
-    height: 48px;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: #1a3a5c;
+    background: #c41230;
     color: white;
     border: none;
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 12px rgba(196,18,48,0.35);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 100;
+    transition: transform 0.15s;
 }
-.jump-btn:active { background: #c41230; }
+.jump-btn:active { transform: scale(0.92); }
+
+@media (min-width: 640px) {
+    body { padding-bottom: 80px; }
+    .this-week-card, .table-container, .footer { margin-left: 0; margin-right: 0; }
+}
 </style>
 </head>
 <body>
 
 <div class="header">
     <h1>德恒金融证券业务先锋组</h1>
-    <div class="sub">2026年例会排班表 \u00b7 每周五</div>
+    <div class="sub">2026年例会排班表 &middot; 每周五</div>
 </div>
 
 <div class="this-week-card">
@@ -184,17 +204,16 @@ tbody tr.this-week:hover { background: #fff3cd; }
 </div>
 
 <div class="footer">
-    主持顺序：黄磊\u2192陈琦\u2192安健\u2192唐永生\u2192秦韬\u2192张忠钢（每人两周）<br>
-    资讯顺序：黄磊\u2192秦韬\u2192张忠钢\u2192唐永生\u2192安健\u2192陈琦（每人一周，延迟一期发布）<br>
-    页面生成于 05月22日 \u00b7 自动排班系统
+    主持顺序：黄磊 &rarr; 陈琦 &rarr; 安健 &rarr; 唐永生 &rarr; 秦韬 &rarr; 张忠钢（每人两周）<br>
+    资讯顺序：黄磊 &rarr; 秦韬 &rarr; 张忠钢 &rarr; 唐永生 &rarr; 安健 &rarr; 陈琦（每人一周，延迟一期发布）<br>
+    页面生成于 <span id="genDate">---</span> &middot; 自动排班系统
 </div>
 
-<button class="jump-btn" onclick="scrollToToday()">\u{1F4C5}</button>
+<button class="jump-btn" onclick="scrollToToday()" title="跳到本周">&#128197;</button>
 
 <script>
 var DATA = [{"date": "2026-01-02", "month": 1, "day": 2, "host": "安健", "radar": "安健"}, {"date": "2026-01-09", "month": 1, "day": 9, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-01-16", "month": 1, "day": 16, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-01-23", "month": 1, "day": 23, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-01-30", "month": 1, "day": 30, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-02-06", "month": 2, "day": 6, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-02-13", "month": 2, "day": 13, "host": "张忠钢", "radar": "安健"}, {"date": "2026-02-20", "month": 2, "day": 20, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-02-27", "month": 2, "day": 27, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-03-06", "month": 3, "day": 6, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-03-13", "month": 3, "day": 13, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-03-20", "month": 3, "day": 20, "host": "安健", "radar": "唐永生"}, {"date": "2026-03-27", "month": 3, "day": 27, "host": "安健", "radar": "安健"}, {"date": "2026-04-03", "month": 4, "day": 3, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-04-10", "month": 4, "day": 10, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-04-17", "month": 4, "day": 17, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-04-24", "month": 4, "day": 24, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-05-01", "month": 5, "day": 1, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-05-08", "month": 5, "day": 8, "host": "张忠钢", "radar": "安健"}, {"date": "2026-05-15", "month": 5, "day": 15, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-05-22", "month": 5, "day": 22, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-05-29", "month": 5, "day": 29, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-06-05", "month": 6, "day": 5, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-06-12", "month": 6, "day": 12, "host": "安健", "radar": "唐永生"}, {"date": "2026-06-19", "month": 6, "day": 19, "host": "安健", "radar": "安健"}, {"date": "2026-06-26", "month": 6, "day": 26, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-07-03", "month": 7, "day": 3, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-07-10", "month": 7, "day": 10, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-07-17", "month": 7, "day": 17, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-07-24", "month": 7, "day": 24, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-07-31", "month": 7, "day": 31, "host": "张忠钢", "radar": "安健"}, {"date": "2026-08-07", "month": 8, "day": 7, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-08-14", "month": 8, "day": 14, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-08-21", "month": 8, "day": 21, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-08-28", "month": 8, "day": 28, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-09-04", "month": 9, "day": 4, "host": "安健", "radar": "唐永生"}, {"date": "2026-09-11", "month": 9, "day": 11, "host": "安健", "radar": "安健"}, {"date": "2026-09-18", "month": 9, "day": 18, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-09-25", "month": 9, "day": 25, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-10-02", "month": 10, "day": 2, "host": "秦韬", "radar": "秦韬"}, {"date": "2026-10-09", "month": 10, "day": 9, "host": "秦韬", "radar": "张忠钢"}, {"date": "2026-10-16", "month": 10, "day": 16, "host": "张忠钢", "radar": "唐永生"}, {"date": "2026-10-23", "month": 10, "day": 23, "host": "张忠钢", "radar": "安健"}, {"date": "2026-10-30", "month": 10, "day": 30, "host": "黄磊", "radar": "陈琦"}, {"date": "2026-11-06", "month": 11, "day": 6, "host": "黄磊", "radar": "黄磊"}, {"date": "2026-11-13", "month": 11, "day": 13, "host": "陈琦", "radar": "秦韬"}, {"date": "2026-11-20", "month": 11, "day": 20, "host": "陈琦", "radar": "张忠钢"}, {"date": "2026-11-27", "month": 11, "day": 27, "host": "安健", "radar": "唐永生"}, {"date": "2026-12-04", "month": 12, "day": 4, "host": "安健", "radar": "安健"}, {"date": "2026-12-11", "month": 12, "day": 11, "host": "唐永生", "radar": "陈琦"}, {"date": "2026-12-18", "month": 12, "day": 18, "host": "唐永生", "radar": "黄磊"}, {"date": "2026-12-25", "month": 12, "day": 25, "host": "秦韬", "radar": "张忠钢"}];
 
-// pad2 for old browser compatibility
 function pad2(n) { return n < 10 ? '0' + n : '' + n; }
 
 function getNextFriday() {
@@ -224,16 +243,20 @@ function isInThisWeek(dateStr) {
 }
 
 function render() {
+    var today = new Date();
+    document.getElementById('genDate').textContent =
+        pad2(today.getMonth() + 1) + '月' + pad2(today.getDate()) + '日';
+
     var next = getNextFriday();
     var nextDuty = null;
     for (var i = 0; i < DATA.length; i++) {
-        if (DATA[i].date === next.iso) {
-            nextDuty = DATA[i];
-            break;
-        }
+        if (DATA[i].date === next.iso) { nextDuty = DATA[i]; break; }
     }
     if (!nextDuty) nextDuty = DATA[0];
-    document.getElementById('cardHeader').textContent = isInThisWeek(next.iso) ? '本周例会' : '下次例会';
+
+    var isThisWeek = isInThisWeek(next.iso);
+    document.getElementById('cardHeader').textContent = isThisWeek ? '本周例会' : '下次例会';
+    document.getElementById('cardHeader').style.background = isThisWeek ? '#1a7a3a' : '#c41230';
     document.getElementById('thisWeekHost').textContent = nextDuty.host;
     document.getElementById('thisWeekRadar').textContent = nextDuty.radar;
     document.getElementById('thisWeekDate').textContent = next.label;
@@ -254,6 +277,7 @@ function render() {
             + '<td>' + d.radar + '</td></tr>';
     }
     tbody.innerHTML = html;
+
     setTimeout(function() {
         var row = document.getElementById('row-' + next.iso);
         if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
